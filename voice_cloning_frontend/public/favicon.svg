@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+  </defs>
+  <!-- Mic body -->
+  <rect x="11" y="3" width="10" height="16" rx="5" stroke="url(#g)" stroke-width="2.2" fill="none"/>
+  <!-- Mic stand arc -->
+  <path d="M7 17c0 5 18 5 18 0" stroke="url(#g)" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <!-- Stem -->
+  <line x1="16" y1="22" x2="16" y2="28" stroke="url(#g)" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- Base -->
+  <line x1="11" y1="28" x2="21" y2="28" stroke="url(#g)" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- Waveform lines inside mic -->
+  <path d="M13 11 Q14.5 8.5 16 11 Q17.5 13.5 19 11" stroke="url(#g)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+</svg>

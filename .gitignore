@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+
+# Django and local data
+*.sqlite3
+/Voice-Cloning/media/generated/
+
+# Frontend dependencies and build output
+/voice_cloning_frontend/node_modules/
+/voice_cloning_frontend/dist/
+/voice_cloning_frontend/dist-ssr/
+/voice_cloning_frontend/*.local
+/voice_cloning_frontend/npm-debug.log*
+/voice_cloning_frontend/yarn-debug.log*
+/voice_cloning_frontend/yarn-error.log*
+/voice_cloning_frontend/pnpm-debug.log*
+/voice_cloning_frontend/lerna-debug.log*
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Test and coverage output
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Local editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Security: strict referrer — don't leak full URL to third-party font CDN -->
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <!--
+      Content-Security-Policy delivered via HTTP header in production (via Django / nginx).
+      The <meta> CSP below is kept for dev-server baseline only.
+      NOTE: frame-ancestors is intentionally omitted from the meta tag — browsers ignore it
+      in <meta> elements (it only works as an HTTP response header).
+
+      script-src  'self' + hash of the inline theme-init script below
+      style-src   'self' fonts.googleapis.com 'unsafe-inline'   (Google Fonts + Tailwind)
+      font-src    'self' fonts.gstatic.com
+      connect-src 'self' + both backend ports + Vite HMR websocket on any port
+      media-src   'self' blob:
+      img-src     'self' data: blob:
+      object-src  'none'
+      base-uri    'self'
+    -->
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src 'self';
+      script-src  'self' 'unsafe-inline' 'unsafe-eval' blob:;
+      worker-src  'self' blob:;
+      style-src   'self' https://fonts.googleapis.com 'unsafe-inline';
+      font-src    'self' https://fonts.gstatic.com;
+      connect-src 'self' http://127.0.0.1:8000 http://localhost:8000 ws://localhost:* ws://127.0.0.1:*;
+      media-src   'self' blob:;
+      img-src     'self' data: blob:;
+      object-src  'none';
+      base-uri    'self';
+    " />
+
+    <title>VoiceClone AI - Clean &amp; Modern Voice Studio</title>
+    <meta name="description" content="Simple, clean, and user-friendly web interface for voice cloning powered by a Django backend." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!--
+      Inline theme-init script: reads saved preference from localStorage before the
+      first paint to avoid a flash of wrong theme. The sha256 hash above allows this
+      specific script to run under the strict script-src CSP.
+    -->
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('voice_studio_theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (saved === 'dark' || (!saved && prefersDark)) {
+            document.documentElement.classList.add('dark');
+            document.documentElement.style.colorScheme = 'dark';
+          } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.style.colorScheme = 'light';
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="h-full font-sans antialiased text-slate-800 dark:text-slate-100 bg-slate-50 dark:bg-slate-950 transition-colors duration-200">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
